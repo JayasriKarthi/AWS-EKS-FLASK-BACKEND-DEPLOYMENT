@@ -316,7 +316,6 @@ kubectl get svc
 
 ---
 
-![alt text](<screenshots/pod detailed image.png>)
 
 ### events
 
