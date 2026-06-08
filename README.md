@@ -65,6 +65,8 @@ Flask Backend Pods
 
 Created an Amazon Linux 2023 EC2 instance to manage the Kubernetes cluster.
 
+![alt text](screenshots/instance.png)
+
 ### Installed eksctl
 
 ```bash
@@ -89,6 +91,8 @@ AdministratorAccess
 
 Attached the IAM role to the EC2 instance.
 
+![alt text](<screenshots/IAM role.png>)
+
 ---
 
 ## Step 3: Create Amazon EKS Cluster
@@ -102,6 +106,7 @@ eksctl create cluster \
 --nodes-min 1 \
 --nodes-max 3
 ```
+![alt text](<screenshots/cluster creation.png>)
 
 ### Cluster Configuration
 
@@ -113,6 +118,10 @@ eksctl create cluster \
 | Nodes | 3 |
 | Kubernetes Version | 1.33 |
 
+![alt text](screenshots/eks.png)
+
+![alt text](<screenshots/2 cluster.png>)
+
 ---
 
 ## Step 4: Clone Backend Repository
@@ -121,6 +130,8 @@ Installed Git and cloned the Flask backend application repository.
 
 ```bash
 git clone <repository-url>
+
+screenshots/backend clone.png
 ```
 
 ---
@@ -132,6 +143,9 @@ Installed Docker and built the application image.
 ```bash
 docker build -t nextwork-flask-backend .
 ```
+![alt text](<screenshots/docker build.png>)
+
+![alt text](<screenshots/container image.png>)
 
 ---
 
@@ -151,7 +165,7 @@ docker tag nextwork-flask-backend:latest <ecr-uri>:latest
 
 docker push <ecr-uri>:latest
 ```
-
+![alt text](<screenshots/ecr creation.png>)
 ---
 
 ## Step 7: Create Kubernetes Deployment Manifest
@@ -185,6 +199,9 @@ spec:
         - containerPort: 8080
 ```
 
+![alt text](<screenshots/flask deployment-yaml.png>)
+
+
 ### Purpose
 
 - Deploy Flask Backend
@@ -214,6 +231,8 @@ spec:
   - port: 8080
     targetPort: 8080
 ```
+
+![alt text](screenshots/flask-service-yaml.png)
 
 ### Purpose
 
@@ -269,19 +288,19 @@ kubectl get svc
 
 ### EKS Cluster
 
-![EKS Cluster](screenshots/eks-cluster-created.png)
+![alt text](<screenshots/cluster creation.png>)
 
 ### ECR Repository
 
-![ECR Repository](screenshots/ecr-repository.png)
+![alt text](screenshots/ecr.png)
 
 ### Deployment Manifest
 
-![Deployment](screenshots/deployment-manifest.png)
+![alt text](<screenshots/flask deployment-yaml.png>)
 
 ### Service Manifest
 
-![Service](screenshots/service-manifest.png)
+![alt text](screenshots/flask-service-yaml.png)
 
 ### kubectl Apply
 
@@ -289,13 +308,21 @@ kubectl get svc
 
 ### EKS Nodes
 
-![Nodes](screenshots/eks-nodes.png)
+![alt text](<screenshots/node groups.png>)
 
 ### Pod Events
+![alt text](<screenshots/pod detailed image.png>)
 
-![Pods](screenshots/pod-events.png)
 
 ---
+
+![alt text](<screenshots/pod detailed image.png>)
+
+### events
+
+![alt text](<screenshots/events image.png>)
+
+
 
 ## Key Learnings
 
@@ -306,19 +333,6 @@ kubectl get svc
 - Deployed applications using kubectl.
 - Verified workloads through the EKS console.
 - Understood Pods, Deployments, Services, and Node Groups.
-
----
-
-## Cleanup
-
-Delete EKS Cluster
-
-```bash
-eksctl delete cluster \
---name nextwork-eks-cluster
-```
-
-Terminate EC2 Instance and delete ECR Repository to avoid AWS charges.
 
 ---
 
