@@ -131,8 +131,8 @@ Installed Git and cloned the Flask backend application repository.
 ```bash
 git clone <repository-url>
 
-screenshots/backend clone.png
 ```
+![alt text](<screenshots/backend clone.png>)
 
 ---
 
